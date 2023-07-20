@@ -33,9 +33,13 @@ def get_country_data(country_code):
     dataframe['date'] = pd.to_datetime(dataframe['date'])
     # get the dataframe for the country
     country = dataframe
+    # cast new_confirmed and new_deceased to int and sum by month
+    # Cast 'new_confirmed' and 'new_deceased' columns to integers
+    country['new_confirmed'] = country['new_confirmed'].astype(int)
+    country['new_deceased'] = country['new_deceased'].astype(int)
     # get the monthly data for the country
-    country_monthly_data = country.groupby(
-        [pd.Grouper(key='date', freq='M')]).sum().fillna(0).reset_index()
+    country_monthly_data = country.groupby(pd.Grouper(
+        key='date', freq='M')).agg({'new_confirmed': 'sum', 'new_deceased': 'sum'}).reset_index()
     # Calculate recovery rate with condition to handle division by zero
     country_monthly_data['recovery_rate'] = np.where(
         country_monthly_data['new_confirmed'] == 0, 1, 1 - (country_monthly_data['new_deceased'] / country_monthly_data['new_confirmed']))
