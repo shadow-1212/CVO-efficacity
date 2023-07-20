@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "hale-carport-304214",
+  "private_key_id": "d9b788ff294c6faa12903df4f9a476d1536297bc",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQC5ynp8/aG4HhSL\nTVvOJA/uSBuGTAmg5XpZ8Z6/7KQt20AubebZcVOyzhyszckfU+cEHLTqtzEqFCEC\nEy4DzYxiJODGS+bbVquHO0nrN+SWRW1ttpFPBv6QwMPlAnAl/VVrjPy/ThuPT1mY\nw2gpGqAx2U5YNeHnOzH+Ew54h6x5Dybyr1qbibP33pqkuglqu1KPqqkAY5G9LbIm\n4ZeC+AZJX/iskvxRQThaeXtq3Wh6U/XIIHM66j+5PRpW4EFu/6o0kY8Cs+1sHQDT\nt5xTcpUPf7ZwtXvFT5NtivBwLInVyLfLxEdXV50APBuqkcRh3YVb1LGFT5KemNbB\nZxoTWnMvAgMBAAECggEACWoqRNUxcbwMfHaiFVMcf42l32tQ/ZdDWPV2fvFF7JD0\nsqWdEh29CQ2KxHL1IyJETaAKxu4bjq9QcON57HVpDLwjq8jC3RCKRqMJfuLpMXg5\nMFsVB/UpxzoNczhpaHNq9bVCRYt2uA9kUeptB9Ayl/QUFUI9vVLxmJdsn0z4v3Wf\n7Du/5QDa9vR+e+F8GCvQr2/ySPcxRVZMMIOFHBd5lB/mVPBJvjuvDy/gvC5vO6TD\nE88suecsd9dP+76VhUXe2Z5vBkIeUp4MhzdwYKy1uR+2TLX9GyzVdZJBtJPFg64Q\nGyNRQZXuBO90GUG0IbErvy6/1l/zklhVsTS+ZbB6iQKBgQDtOnhCGqeh09qYwYix\nQpTo1fumr5NcEMtuV/V6/XR+WGNq8KQXwdJ6q95CrYIiUuBuNjGtxrDC9EZxNqv1\n6efnMUxdpP3DWRGG5d9pX1kN5lJmdNqExcRQMuH/pkO8sW/ldvL2xS7Cot6Tc1jO\nQ79f+Am0lCbktKt+UJSkoKAIZQKBgQDIfgqH1WNEpWgHt5CfpC/n0TkXDvIb4tba\nrbiSB4Lwk60yocDlwONs6B3jF+spAochdxZtzVfA1aF+uXunzUqg50Q33W5GsYDd\nqCl6ZxqnUXWCNfSSPDb1pnJrhWvDFgqsd4zo5hdO2dJQRjE5Ev6B3WUoLWD0p7fY\ncASEhgJSAwKBgE8KiD8eOnRE7jSvZygIkyzw/yQOo/6s6dseG4CbKlFeieF7xHDV\n95c/5JI61X0yN+0AyZSo+wQ5966JFMqe4NG7L0KUUqjf6GMV/FZTmoxzDUlt7dEH\nQ92k1oAjmbYpOKsv8swd7vKS6a4fZJt1HzKOpk0wf7T8LZesqZogmrGxAoGAaMEC\nO4qQvVM3EaElnWOp7BNzIssaUNuqqsNNxm7KSWy/d87v/JtVuJdm1jqvEdRSSnfw\nbhp2GTkFkjLTmw82SO/MwuudLK6dyDKOyXeJg5aaMRiD2sw/YwY+jlM9xMaFeStV\nonJmBzrkGjEyksGL3MqSifV7zRi8hAezNJLYL4UCgYAPJE8FUkCQ2zmEIp5lGxOs\nyot90gAvB1oVepvZkK1fOFAy26ag6Xqwje7aSuJr8xVoqSqKwf8BMCBLIlgcHokQ\nQUpS1Gve2FSoJLmWR4sX4feI2cWtroPHQx5eMoH2c8gMCKu6m42n3y5g9iwHpvGH\nMEL1L2YIeeRNwYpl/5TL6w==\n-----END PRIVATE KEY-----\n",
+  "client_email": "njaka-559@hale-carport-304214.iam.gserviceaccount.com",
+  "client_id": "110205322725867357115",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/njaka-559%40hale-carport-304214.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
