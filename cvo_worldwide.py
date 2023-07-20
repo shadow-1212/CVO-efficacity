@@ -16,9 +16,21 @@ POPULATION_PER_COUNTRY = {
 CONSTANT_FACTOR = 100000
 
 
-def get_country_data(country_code, dataframe):
+def get_country_data(country_code):
+    # connect to big query and load the data and use json credentials
+    os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "./hale-carport-304214-d9b788ff294c.json"
+    client = bigquery.Client()
+    # Perform a query.
+    QUERY = (
+        'SELECT * FROM `hale-carport-304214.worldwide_covid19_after_2020.worldwide_covid19_after_2020` WHERE country_code = "' + country_code + '" ORDER BY date ASC'
+    )
+    result = client.query(QUERY).to_dataframe()  # API request
+    # transform the result into a dataframe
+    dataframe = pd.DataFrame(result)
+    # convert the date column to datetime type
+    dataframe['date'] = pd.to_datetime(dataframe['date'])
     # get the dataframe for the country
-    country = dataframe[dataframe['country_code'] == country_code]
+    country = dataframe
     # get the monthly data for the country
     country_monthly_data = country.groupby(
         [pd.Grouper(key='date', freq='M')]).sum().fillna(0).reset_index()
@@ -43,23 +55,11 @@ def get_country_data(country_code, dataframe):
 
 # function
 if __name__ == "__main__":
-    # connect to big query and load the data and use json credentials
-    os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "./hale-carport-304214-d9b788ff294c.json"
-    client = bigquery.Client()
-    # Perform a query.
-    QUERY = (
-        'SELECT * FROM `hale-carport-304214.worldwide_covid19_after_2020.worldwide_covid19_after_2020` '
-    )
-    result = client.query(QUERY).to_dataframe()  # API request
-    # transform the result into a dataframe
-    dataframe = pd.DataFrame(result)
-    # convert the date column to datetime type
-    dataframe['date'] = pd.to_datetime(dataframe['date'])
     # define an array of country codes
     country_codes = ['US', 'FR', 'MG', 'GB', 'CN']
     # create a dataframe for each country and plot all the recovery rates on the same graph
     for country_code in country_codes:
-        country_monthly_data = get_country_data(country_code, dataframe)
+        country_monthly_data = get_country_data(country_code)
         plt.plot(country_monthly_data['date'],
                  country_monthly_data['recovery_rate'],
                  label=country_code, marker='o')
