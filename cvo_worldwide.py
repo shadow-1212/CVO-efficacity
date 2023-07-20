@@ -9,14 +9,20 @@ os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "./hale-carport-304214-d9b788ff29
 client = bigquery.Client()
 # Perform a query.
 QUERY = (
-    'SELECT * FROM `bigquery-public-data.covid19_open_data.covid19_open_data` cl'
-    'WHERE date BETWEEN "2021-01-01" AND "2021-12-31" '
-    'AND country_name in ("United States of America","France","Madagascar","United Kingdom","China")'
-    'AND date >= "2020-12-31"'
-    ' and (CAST(new_tested AS INTEGER) >= CAST(new_confirmed AS INTEGER)  OR (new_tested IS NULL AND (new_confirmed IS NULL or new_confirmed=0))) '
-    'order by date asc'
+    'SELECT * FROM `hale-carport-304214.worldwide_covid19_after_2020.worldwide_covid19_after_2020` '
 )
-query_job = client.query(QUERY)  # API request
-data = query_job.to_dataframe()  # Waits for query to finish
-# to export the data to a csv file
-data.to_csv('covid19_after_2020.csv', index=False)
+data = client.query(QUERY).to_dataframe  # API request
+dataframe = pd.DataFrame(data)
+# export the data to a csv file
+# Aggregate data on a monthly basis  by country and fill in missing values with 0
+# monthly_data = data.groupby(
+#     [pd.Grouper(key='date', freq='M'), 'country_name']).sum().fillna(0).reset_index()
+# # Calculate recovery rate with condition to handle division by zero
+# monthly_data['recovery_rate'] = monthly_data['new_confirmed'] / \
+#     monthly_data['new_deceased']
+# monthly_data['recovery_rate'] = monthly_data.apply(
+#     lambda row: 100 if row['new_deceased'] == 0 else row['recovery_rate'], axis=1)
+# # delete all rows with new_confirmed = 0 and new_deceased = 0
+# monthly_data = monthly_data[monthly_data['new_confirmed'] != 0]
+# # export the monthly_data to a csv file
+# monthly_data.to_csv('monthly_data.csv', index=False)
