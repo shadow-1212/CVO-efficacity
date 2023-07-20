@@ -5,6 +5,15 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 # create function get datarame for a country_code
+POPULATION_PER_COUNTRY = {
+    'US': 340090940,
+    'FR': 67081000,
+    'MG': 29680000,
+    'GB': 66020000,
+    'CN': 1409517397
+}
+
+CONSTANT_FACTOR = 100000
 
 
 def get_country_data(country_code, dataframe):
@@ -14,15 +23,21 @@ def get_country_data(country_code, dataframe):
     country_monthly_data = country.groupby(
         [pd.Grouper(key='date', freq='M')]).sum().fillna(0).reset_index()
     # Calculate recovery rate with condition to handle division by zero
-    country_monthly_data['recovery_rate'] = country_monthly_data['new_confirmed'] / \
-        country_monthly_data['new_deceased']
-    country_monthly_data['recovery_rate'] = country_monthly_data.apply(
-        lambda row: 100 if row['new_deceased'] == 0 else row['recovery_rate'], axis=1)
+    country_monthly_data['recovery_rate'] = np.where(
+        country_monthly_data['new_confirmed'] == 0, 1, 1 - country_monthly_data['new_deceased'] / country_monthly_data['new_confirmed'])
+
+    # country_monthly_data['recovery_rate'] = country_monthly_data.apply(
+    #     lambda row: 100 if row['new_deceased'] == 0 else row['recovery_rate'], axis=1)
     # delete all rows with new_confirmed = 0 and new_deceased = 0
     country_monthly_data = country_monthly_data[country_monthly_data['new_confirmed'] != 0]
-    # export the monthly_data to a csv file
+
+    # ratio the recovery rate to the population
+    country_monthly_data['recovery_rate'] = country_monthly_data['recovery_rate'] * \
+        CONSTANT_FACTOR / POPULATION_PER_COUNTRY[country_code]
+
+    # export the monthly_data to a csv file inside CSV folder
     country_monthly_data.to_csv(
-        country_code + '_monthly_data.csv', index=False)
+        './CSV/' + country_code + '_monthly_data.csv', index=False)
     return country_monthly_data
 
 
